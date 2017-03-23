@@ -1,6 +1,7 @@
 #include "Chip8.h"
 
 #include <cstdio>
+#include <cstdlib>
 #include <fstream>
 #include <string>
 
@@ -33,27 +34,23 @@ void Chip8::initialize()
 }
 
 void Chip8::loadGame(const std::string& filename)
-{
-    // Use fopen in binary mode
-    std::ifstream file(filename, std::ios::binary | std::ios::ate);
-    auto bufferSize = file.tellg();
-    file.seekg(0, std::ios::beg);
-
-    unsigned char* buffer = new unsigned char[5];
-    int i = 0;
-    while (!file.eof())
-      {
-            buffer[i] = file.get();
-            i++;
-      }  
-
-    // Start filling the memory at location 0x200 == 512.
-    for (int i = 0; i < bufferSize; ++i)
+{    
+    FILE* space = fopen("PONG", "rb");
+    if (space == nullptr)
     {
+        printf("Failed to open PONG!");
+        exit(0);
+    }
+    fseek(space, 0, SEEK_END);
+    long bufferSize = ftell(space);
+    rewind(space);
+    unsigned char* buffer = (unsigned char *)malloc(sizeof(char) * bufferSize);
+    size_t result = fread(buffer, 1, bufferSize, space);
+    for (int i = 0; i < bufferSize; ++i){ //Load ROM at 0x200
         memory[i + 512] = buffer[i];
     }
-
-    delete[] buffer;
+    fclose(space);
+    free(buffer);
 }
 
 void Chip8::emulateCycle()
