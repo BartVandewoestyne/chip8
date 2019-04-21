@@ -9,6 +9,7 @@ Other Chip-8 information can be found at:
 * http://mattmik.com/files/chip8/mastering/chip8.html
 * http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
 * http://www.pong-story.com/chip8/
+* https://www.youtube.com/playlist?list=PL5PyurErl12czoLyYD8za68d61T_OZsP2
 
 Other Chip-8 emultators can be found at:
 
