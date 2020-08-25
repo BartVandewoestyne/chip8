@@ -21,3 +21,4 @@ Other Chip-8 emultators can be found at:
 
 * https://github.com/btimofeev/emuchip
 * https://github.com/mwales/chip8
+* https://github.com/Panky-codes/CHIP8
